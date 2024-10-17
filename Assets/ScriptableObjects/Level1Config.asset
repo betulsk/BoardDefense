@@ -15,3 +15,6 @@ MonoBehaviour:
   _boardSize: {x: 4, y: 8}
   _pieceDistance: 0
   _boardPiece: {fileID: 6676921320635676024, guid: 54377b887d23f1744876129b80c84d08, type: 3}
+  _defenceHeightThreshold: 3
+  ActivePieceColor: {r: 0.38729188, g: 1, b: 0.1462264, a: 1}
+  PassivePieceColor: {r: 1, g: 1, b: 1, a: 0.5019608}

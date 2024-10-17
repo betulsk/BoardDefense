@@ -2,10 +2,7 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
-    [SerializeField] private BoardPieceSpawner _boardPieceSpawner;
+	[SerializeField] private Transform _piecesVisualTransform;
 
-    private void Start()
-    {
-        _boardPieceSpawner.Spawn();
-    }
+	public Transform PiecesVisualTransform => _piecesVisualTransform;
 }

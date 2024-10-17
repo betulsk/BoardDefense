@@ -14,4 +14,10 @@ public class GameConfig : ScriptableObject
 
     [SerializeField] private BoardPiece _boardPiece;
     public BoardPiece BoardPiecePrefab => _boardPiece;
+
+    [SerializeField] private int _defenceHeightThreshold;
+    public int DefenceHeightThreshold => _defenceHeightThreshold;
+
+    public Color ActivePieceColor;
+    public Color PassivePieceColor;
 }

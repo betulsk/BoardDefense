@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
@@ -7,6 +5,8 @@ public class GameManager : Singleton<GameManager>
     private int _currentLevelIndex; 
 
     private BoardPieceSpawner _boardPieceSpawner;
+
+    [SerializeField] private Board _board;
     public BoardPieceSpawner BoardPieceSpawner => _boardPieceSpawner;
 
     private void Start()
@@ -18,7 +18,6 @@ public class GameManager : Singleton<GameManager>
     {
         _currentLevelIndex = PlayerData.LevelData;
         _boardPieceSpawner = new BoardPieceSpawner(GameConfigManager.Instance.GameConfigs[_currentLevelIndex]);
-        _boardPieceSpawner.Spawn();
+        _boardPieceSpawner.Spawn(_board.PiecesVisualTransform);
     }
-
 }
