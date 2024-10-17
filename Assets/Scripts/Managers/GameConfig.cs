@@ -6,10 +6,12 @@ using UnityEngine;
 public class GameConfig : ScriptableObject
 {
     [Header("BOARD")]
-    [SerializeField] private int _boardWidth;
-    public int BoardWidth => _boardWidth;
-    
-    [SerializeField] private int _boardHeight;
-    public int BoardHeight => _boardHeight;
-    
+    [SerializeField] private Vector2Int _boardSize;
+    public Vector2Int BoardSize => _boardSize;
+
+    [SerializeField] private float _pieceDistance;
+    public float PieceOffset => _pieceDistance;
+
+    [SerializeField] private BoardPiece _boardPiece;
+    public BoardPiece BoardPiecePrefab => _boardPiece;
 }

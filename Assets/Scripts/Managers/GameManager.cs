@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    private int _currentLevelIndex; 
+
+    private BoardPieceSpawner _boardPieceSpawner;
+    public BoardPieceSpawner BoardPieceSpawner => _boardPieceSpawner;
+
+    private void Start()
     {
-        
+        Init();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Init()
     {
-        
+        _currentLevelIndex = PlayerData.LevelData;
+        _boardPieceSpawner = new BoardPieceSpawner(GameConfigManager.Instance.GameConfigs[_currentLevelIndex]);
+        _boardPieceSpawner.Spawn();
     }
+
 }
