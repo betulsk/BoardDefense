@@ -2,14 +2,23 @@ using UnityEngine;
 
 public class Enemy : BaseResource
 {
-    public EEnemyType EnemyType;
-    public float Speed;
+    [SerializeField] private EEnemyType _enemyType;
+    [SerializeField] private EnemyMovementBehaviour _enemyMovementBehaviour;
+
+    #region Getter/Setter
+    public EEnemyType EnemyType => _enemyType;
+    public EnemyMovementBehaviour EnemyMovementBehaviour => _enemyMovementBehaviour;
+
+    public float MovementSpeed;
     public float Health;
+    #endregion
 
     public override void OnSpawnCustomAction()
     {
         base.OnSpawnCustomAction();
         int randomIndex = Random.Range(0, GameManager.Instance.EnemySpawnPositions.Count);
         transform.position = GameManager.Instance.EnemySpawnPositions[randomIndex].transform.position;
+        CurrentBoardPiece = GameManager.Instance.EnemySpawnPositions[randomIndex];
+        _enemyMovementBehaviour.StartMovement();
     }
 }

@@ -65,8 +65,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8108606968866780155, guid: c094a084d4529d84d8da5aae2865ed84, type: 3}
+      propertyPath: MovementSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8108606968866780155, guid: c094a084d4529d84d8da5aae2865ed84, type: 3}
       propertyPath: _poolObjectType
       value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 8472657983769935661, guid: c094a084d4529d84d8da5aae2865ed84, type: 3}
+      propertyPath: m_text
+      value: Enemy1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892747743491063090, guid: c094a084d4529d84d8da5aae2865ed84, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.586
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

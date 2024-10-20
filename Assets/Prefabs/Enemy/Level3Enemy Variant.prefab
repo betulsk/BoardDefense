@@ -69,20 +69,12 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8108606968866780155, guid: c094a084d4529d84d8da5aae2865ed84, type: 3}
+      propertyPath: MovementSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8108606968866780155, guid: c094a084d4529d84d8da5aae2865ed84, type: 3}
       propertyPath: _poolObjectType
       value: 23
-      objectReference: {fileID: 0}
-    - target: {fileID: 8472657983769935661, guid: c094a084d4529d84d8da5aae2865ed84, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 8472657983769935661, guid: c094a084d4529d84d8da5aae2865ed84, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 8472657983769935661, guid: c094a084d4529d84d8da5aae2865ed84, type: 3}
-      propertyPath: m_TextStyleHashCode
-      value: -1183493901
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
