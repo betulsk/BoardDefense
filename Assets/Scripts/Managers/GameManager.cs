@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
@@ -8,6 +9,7 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] private Board _board;
     public BoardPieceSpawner BoardPieceSpawner => _boardPieceSpawner;
+    public List<BoardPiece> EnemySpawnPositions;
 
     private void Start()
     {

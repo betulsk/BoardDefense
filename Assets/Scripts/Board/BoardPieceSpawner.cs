@@ -35,6 +35,12 @@ public class BoardPieceSpawner
                 BoardPiece piece = UnityEngine.Object.Instantiate(_boardPiecePrefab, parentTransform);
                 piece.SetPieceDatas(j, i, _gameConfig);
                 _BoardPieces[j, i] = piece;
+
+                if(i == _gameConfig.BoardSize.y)
+                {
+                    GameManager.Instance.EnemySpawnPositions.Add(piece);
+                }
+
                 _PiecePositionToPiece.Add(new Vector2Int(j, i), piece);
             }
         }

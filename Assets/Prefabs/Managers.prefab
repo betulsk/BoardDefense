@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3863dda8d71b504ba30c1e76d046fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameConfig: {fileID: 0}
   _gameConfigs:
   - {fileID: 11400000, guid: f8dbd73db6a9fe14b802fee79b30c7b5, type: 2}
   - {fileID: 11400000, guid: 4890be92b0e8e1044a4b660dcf545a78, type: 2}
@@ -93,6 +92,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cfeb92625b0c61469a7be81a9021482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _board: {fileID: 0}
+  EnemySpawnPositions: []
+--- !u!1 &6215153732159298291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3557959070175988503}
+  - component: {fileID: 5834814157347578628}
+  m_Layer: 0
+  m_Name: ResourcePoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3557959070175988503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6215153732159298291}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2481851985907214756}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5834814157347578628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6215153732159298291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179735b6221ff964fbe340d572c8108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolObjects:
+  - {fileID: 2516107288763263833, guid: b7fd8253eb0865b4eba4c504642588b3, type: 3}
+  - {fileID: 6194636534989617940, guid: f336dfd6f4a1b4a4f85ee331d29c06c7, type: 3}
+  - {fileID: 4414364848439637203, guid: 05c66507f6ceaee4c83287f1feacfdbe, type: 3}
+  _minCount: 1
+  _maxCount: 15
 --- !u!1 &6844589897317016905
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,5 +175,6 @@ Transform:
   m_Children:
   - {fileID: 6389250845722326685}
   - {fileID: 1065181064443096164}
+  - {fileID: 3557959070175988503}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
