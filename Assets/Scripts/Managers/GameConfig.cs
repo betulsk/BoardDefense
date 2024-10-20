@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameConfig",
@@ -20,4 +21,21 @@ public class GameConfig : ScriptableObject
 
     public Color ActivePieceColor;
     public Color PassivePieceColor;
+
+    [Header("ENEMY")]
+    [SerializeField] private List<EnemyData> _enemyDatas;
+    public List<EnemyData> EnemyDatas => _enemyDatas;
+    public float EnemySpawnDuration;
+
+    //[Header("ITEM")]
+    //[SerializeField] private SerializableDictionary<int,>
+
+
+}
+[System.Serializable]
+public struct EnemyData
+{
+    public EPoolObjectType PoolType;
+    public Enemy EnemyPrefab;
+    public int EnemyCount;
 }

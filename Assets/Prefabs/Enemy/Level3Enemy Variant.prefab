@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8108606968866780155, guid: c094a084d4529d84d8da5aae2865ed84, type: 3}
       propertyPath: _poolObjectType
-      value: 13
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 8472657983769935661, guid: c094a084d4529d84d8da5aae2865ed84, type: 3}
       propertyPath: m_fontAsset

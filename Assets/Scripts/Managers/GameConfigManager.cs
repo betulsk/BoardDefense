@@ -5,4 +5,9 @@ public class GameConfigManager : Singleton<GameConfigManager>
 {
     [SerializeField] private List<GameConfig> _gameConfigs;
     public List<GameConfig> GameConfigs => _gameConfigs;
+
+    public List<EnemyData> GetEnemyDatas()
+    {
+        return _gameConfigs[GameManager.Instance.CurrentLevelIndex].EnemyDatas;
+    }
 }

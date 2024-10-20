@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : BaseResource
@@ -11,6 +9,7 @@ public class Enemy : BaseResource
     public override void OnSpawnCustomAction()
     {
         base.OnSpawnCustomAction();
-        transform.position = GameManager.Instance.EnemySpawnPositions[0].transform.position;
+        int randomIndex = Random.Range(0, GameManager.Instance.EnemySpawnPositions.Count);
+        transform.position = GameManager.Instance.EnemySpawnPositions[randomIndex].transform.position;
     }
 }

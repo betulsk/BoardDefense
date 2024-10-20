@@ -12,9 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76d691750dcc614a8ef27d1649b206b, type: 3}
   m_Name: Level3Config
   m_EditorClassIdentifier: 
-  _boardSize: {x: 0, y: 0}
+  _boardSize: {x: 4, y: 8}
   _pieceDistance: 0
-  _boardPiece: {fileID: 0}
+  _boardPiece: {fileID: 6676921320635676024, guid: 54377b887d23f1744876129b80c84d08, type: 3}
   _defenceHeightThreshold: 3
-  ActivePieceColor: {r: 0, g: 0, b: 0, a: 0}
-  PassivePieceColor: {r: 0, g: 0, b: 0, a: 0}
+  ActivePieceColor: {r: 0.3882353, g: 1, b: 0.14509805, a: 1}
+  PassivePieceColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+  _enemyDatas:
+  - EnemyType: 1
+    EnemyPrefab: {fileID: 2516107288763263833, guid: b7fd8253eb0865b4eba4c504642588b3, type: 3}
+    EnemyCount: 7
+  - EnemyType: 2
+    EnemyPrefab: {fileID: 6194636534989617940, guid: f336dfd6f4a1b4a4f85ee331d29c06c7, type: 3}
+    EnemyCount: 3
+  - EnemyType: 3
+    EnemyPrefab: {fileID: 4414364848439637203, guid: 05c66507f6ceaee4c83287f1feacfdbe, type: 3}
+    EnemyCount: 5
+  EnemySpawnDuration: 1

@@ -18,3 +18,14 @@ MonoBehaviour:
   _defenceHeightThreshold: 3
   ActivePieceColor: {r: 0.38729188, g: 1, b: 0.1462264, a: 1}
   PassivePieceColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+  _enemyDatas:
+  - PoolType: 21
+    EnemyPrefab: {fileID: 2516107288763263833, guid: b7fd8253eb0865b4eba4c504642588b3, type: 3}
+    EnemyCount: 3
+  - PoolType: 22
+    EnemyPrefab: {fileID: 6194636534989617940, guid: f336dfd6f4a1b4a4f85ee331d29c06c7, type: 3}
+    EnemyCount: 1
+  - PoolType: 23
+    EnemyPrefab: {fileID: 4414364848439637203, guid: 05c66507f6ceaee4c83287f1feacfdbe, type: 3}
+    EnemyCount: 1
+  EnemySpawnDuration: 1

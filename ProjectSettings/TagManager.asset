@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BoardPiece
+    uniqueID: 1651694577
+    locked: 0
+  - name: Enemy
+    uniqueID: 1491985605
+    locked: 0
+  - name: UI
+    uniqueID: 1258021403
+    locked: 0
