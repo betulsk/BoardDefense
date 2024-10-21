@@ -35,28 +35,35 @@ public class DefenseItem : BaseResource, IHealthProvider
         Interval = data.Interval;
     }
 
-    public float GetMaxHealth()
+    public int GetMaxHealth()
     {
         throw new NotImplementedException();
     }
 
-    public float GetCurHealth()
+    public int GetCurHealth()
     {
         throw new NotImplementedException();
     }
 
-    public float SetCurHealth(float health)
+    public int SetCurHealth(int health)
     {
-        throw new NotImplementedException();
+        if(Health == health)
+        {
+            return Health;
+        }
+        Health = health;
+        OnUpdated?.Invoke(Health);
+        return Health;
     }
 
     public void TakeDamage(int damage)
     {
-        throw new NotImplementedException();
+        Debug.Log("TakeDamage");
     }
 
     public void Die()
     {
-        throw new NotImplementedException();
+        Debug.Log("Die");
+
     }
 }

@@ -3,24 +3,24 @@ using UnityEngine;
 
 public class SimpleHealthProvider : MonoBehaviour, IHealthProvider
 {
-    private float _curHealth;
+    private int _curHealth;
 
-    [SerializeField] private float _maxHealth = 0;
+    [SerializeField] private int _maxHealth = 0;
 
     public Action<float> OnUpdated { get; set; }
     public Action OnDie;
 
-    public float GetCurHealth()
+    public int GetCurHealth()
     {
         return _curHealth;
     }
 
-    public float GetMaxHealth()
+    public int GetMaxHealth()
     {
         return _maxHealth;
     }
 
-    public float SetCurHealth(float health)
+    public int SetCurHealth(int health)
     {
         if(_curHealth == health)
         {

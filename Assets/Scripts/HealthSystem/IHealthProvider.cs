@@ -4,9 +4,9 @@ public interface IHealthProvider
 {
     Action<float> OnUpdated { get; set; }
 
-    float GetMaxHealth();
-    float GetCurHealth();
-    float SetCurHealth(float health);
+    public int GetMaxHealth();
+    public int GetCurHealth();
+    public int SetCurHealth(int health);
     public void TakeDamage(int damage);
     public void Die();
 }
