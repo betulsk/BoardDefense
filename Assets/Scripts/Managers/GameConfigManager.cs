@@ -10,4 +10,9 @@ public class GameConfigManager : Singleton<GameConfigManager>
     {
         return _gameConfigs[GameManager.Instance.CurrentLevelIndex].EnemyDatas;
     }
+
+    public List<DefenseData> GetDefenseItemData()
+    {
+        return _gameConfigs[GameManager.Instance.CurrentLevelIndex].DefenseData;
+    }
 }

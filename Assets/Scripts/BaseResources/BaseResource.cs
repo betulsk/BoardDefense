@@ -3,9 +3,10 @@ using UnityEngine;
 
 public abstract class BaseResource : MonoBehaviour
 {
+    private BoardPiece _currentBoardPiece;
+
     [SerializeField] private EPoolObjectType _poolObjectType;
     [SerializeField] private TMP_Text _sourceText;
-    [SerializeField] private BoardPiece _currentBoardPiece;
 
     public EPoolObjectType PoolObjectType => _poolObjectType;
 
@@ -14,7 +15,6 @@ public abstract class BaseResource : MonoBehaviour
         get { return _currentBoardPiece; }
         set { _currentBoardPiece = value; }
     }
-
 
     public virtual void OnSpawnCustomAction()
     {

@@ -27,15 +27,28 @@ public class GameConfig : ScriptableObject
     public List<EnemyData> EnemyDatas => _enemyDatas;
     public float EnemySpawnDuration;
 
-    //[Header("ITEM")]
-    //[SerializeField] private SerializableDictionary<int,>
-
+    [Header("ITEM")]
+    [SerializeField] private List<DefenseData> _defenseData;
+    public List<DefenseData> DefenseData => _defenseData;
 
 }
+
 [System.Serializable]
 public struct EnemyData
 {
     public EPoolObjectType PoolType;
     public Enemy EnemyPrefab;
     public int EnemyCount;
+}
+
+[System.Serializable]
+public struct DefenseData
+{
+    public EPoolObjectType PoolType;
+    public DefenseItem DefenseItemPrefab;
+    public List<EPieceDirectionType> DirectionTypes;
+    public int ItemCount;
+    public int Damage;
+    public int Range;
+    public int Interval;
 }

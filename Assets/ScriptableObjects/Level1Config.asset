@@ -29,3 +29,25 @@ MonoBehaviour:
     EnemyPrefab: {fileID: 4414364848439637203, guid: 05c66507f6ceaee4c83287f1feacfdbe, type: 3}
     EnemyCount: 1
   EnemySpawnDuration: 1
+  _defenseData:
+  - PoolType: 11
+    DefenseItemPrefab: {fileID: 3131362303539176914, guid: 0a336ef887068934a909cdfa1072747d, type: 3}
+    DirectionTypes: 00000000
+    ItemCount: 3
+    Damage: 3
+    Range: 4
+    Interval: 3
+  - PoolType: 12
+    DefenseItemPrefab: {fileID: 2644909660460546783, guid: 5c52526c1b3524c448fdc82a23078c58, type: 3}
+    DirectionTypes: 00000000
+    ItemCount: 2
+    Damage: 3
+    Range: 4
+    Interval: 3
+  - PoolType: 13
+    DefenseItemPrefab: {fileID: 5907578868842343627, guid: 311d9162349f77a4694814575336f573, type: 3}
+    DirectionTypes: 00000000010000000200000003000000
+    ItemCount: 1
+    Damage: 10
+    Range: 1
+    Interval: 5
