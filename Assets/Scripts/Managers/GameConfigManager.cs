@@ -13,10 +13,15 @@ public class GameConfigManager : Singleton<GameConfigManager>
 
     public List<EnemyData> GetEnemyDatas()
     {
-        return GetActiveConfigData().EnemyDatas;
+        List<EnemyData> enemyDatas = new List<EnemyData>();
+        foreach(var item in GetActiveConfigData().ObjectTypeToEnemyData.Dictionary)
+        {
+            enemyDatas.Add(item.Value);
+        }
+        return enemyDatas;
     }
 
-    public List<DefenseData> GetDefenseItemData()
+    public List<DefenseData> GetDefenseItemDataList()
     {
         var defenseDatas = new List<DefenseData>();
         foreach(var item in GetActiveConfigData().ObjectTypeToDefenseData.Dictionary)
@@ -24,5 +29,19 @@ public class GameConfigManager : Singleton<GameConfigManager>
             defenseDatas.Add(item.Value);
         }
         return defenseDatas;
+    }
+    
+    public EnemyData GetEnemyItemData(EPoolObjectType poolType)
+    {
+        EnemyData enemyData = new EnemyData();
+        enemyData = GetActiveConfigData().ObjectTypeToEnemyData.Dictionary[poolType];
+        return enemyData;
+    }
+    
+    public DefenseData GetDefenseItemData(EPoolObjectType poolType)
+    {
+        DefenseData defenseData = new DefenseData();
+        defenseData = GetActiveConfigData().ObjectTypeToDefenseData.Dictionary[poolType];
+        return defenseData;
     }
 }

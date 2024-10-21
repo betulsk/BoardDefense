@@ -19,7 +19,7 @@ public class ItemUIWidget : MonoBehaviour
 
     private void OnBoardCreated()
     {
-        foreach(var itemData in GameConfigManager.Instance.GetDefenseItemData())
+        foreach(var itemData in GameConfigManager.Instance.GetDefenseItemDataList())
         {
             ItemButtonWidget buttonWidget =  Instantiate(_buttonPrefab, parent: transform);
             buttonWidget.SetData(itemData);

@@ -13,9 +13,11 @@ public class GameConfig : ScriptableObject
 
     [Header("ENEMY")]
     [SerializeField] private List<EnemyData> _enemyDatas;
+    public SerializableDictionary<EPoolObjectType, EnemyData> ObjectTypeToEnemyData;
 
     [Header("ITEM")]
     [SerializeField] private List<DefenseData> _defenseData;
+    public SerializableDictionary<EPoolObjectType, DefenseData> ObjectTypeToDefenseData;
 
     public Vector2Int BoardSize => _boardSize;
     public BoardPiece BoardPiecePrefab => _boardPiece;
@@ -23,11 +25,6 @@ public class GameConfig : ScriptableObject
     public Color ActivePieceColor;
     public Color PassivePieceColor;
     public float EnemySpawnDuration;
-    public List<EnemyData> EnemyDatas => _enemyDatas;
-    public List<DefenseData> DefenseData => _defenseData;
-
-    public SerializableDictionary<EPoolObjectType, DefenseData> ObjectTypeToDefenseData;
-
 }
 
 [System.Serializable]
@@ -36,6 +33,10 @@ public struct EnemyData
     public EPoolObjectType PoolType;
     public Enemy EnemyPrefab;
     public int EnemyCount;
+    public int Health;
+    public int Damage;
+    public int Interval;
+    public float Speed;
 }
 
 [System.Serializable]
@@ -45,7 +46,8 @@ public struct DefenseData
     public DefenseItem DefenseItemPrefab;
     public List<EPieceDirectionType> DirectionTypes;
     public int ItemCount;
+    public int Health;
     public int Damage;
-    public int Range;
     public int Interval;
+    public int Range;
 }

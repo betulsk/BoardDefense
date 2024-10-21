@@ -1,24 +1,23 @@
 using DG.Tweening;
-using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class EnemyMovementBehaviour : MonoBehaviour
 {
-    private Coroutine _moveRoutine;
     [SerializeField] private Enemy _enemy;
 
-    public void StartMovement()
-    {
-        _moveRoutine = StartCoroutine(TryMove());
-    }
+    //public void StartMovement()
+    //{
+    //    _moveRoutine = StartCoroutine(TryMove());
+    //}
 
-    public IEnumerator TryMove()
+    public async Task TryMove()
     {
         _enemy.CurrentBoardPiece.Neighbours.TryGetValue(EPieceDirectionType.Down, out var downPiece);
 
         if(downPiece == null)
         {
-            yield return null;
+            return;
         }
 
         if(downPiece != null && downPiece.CurrentResource == null)
@@ -27,16 +26,16 @@ public class EnemyMovementBehaviour : MonoBehaviour
         }
         else if(downPiece != null /*&& GameElementHelper.IsInCategory(downPiece.PieceType, Constants.CatogoryDefenseItem)*/)
         {
-            //var damagableElement = downPiece.Resource as DefenceItem;
-            //if(damagableElement != null && _canAttack)
-            //{
-            //    await TryAttack(damagableElement);
-            //}
+            var damagableElement = downPiece.CurrentResource as DefenseItem;
+            if(damagableElement != null && !_enemy.IsDead)
+            {
+                await _enemy.AutoShootBehaviour.TryShoot(damagableElement);
+            }
         }
         else
         {
-            yield return new WaitForSeconds(1.5f);
-            StartCoroutine(TryMove());
+            await Task.Delay(1500);
+            await TryMove();
         }
     }
 
@@ -44,7 +43,7 @@ public class EnemyMovementBehaviour : MonoBehaviour
     {
         //_enemy.CurrentBoardPiece.PieceType = EPieceType.Empty;
         _enemy.CurrentBoardPiece.CurrentResource = null;
-        _enemy.transform.DOLocalMoveY(0, _enemy.MovementSpeed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(OnReachedToTargetTile);
+        _enemy.transform.DOLocalMoveY(0, _enemy.Speed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(OnReachedToTargetTile);
     }
 
     private void OnReachedToTargetTile()
