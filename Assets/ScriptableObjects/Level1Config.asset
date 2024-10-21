@@ -13,41 +13,116 @@ MonoBehaviour:
   m_Name: Level1Config
   m_EditorClassIdentifier: 
   _boardSize: {x: 4, y: 8}
-  _pieceDistance: 0
   _boardPiece: {fileID: 6676921320635676024, guid: 54377b887d23f1744876129b80c84d08, type: 3}
   _defenceHeightThreshold: 3
-  ActivePieceColor: {r: 0.38729188, g: 1, b: 0.1462264, a: 1}
-  PassivePieceColor: {r: 1, g: 1, b: 1, a: 0.5019608}
   _enemyDatas:
   - PoolType: 21
     EnemyPrefab: {fileID: 2516107288763263833, guid: b7fd8253eb0865b4eba4c504642588b3, type: 3}
     EnemyCount: 3
+    Health: 0
+    Damage: 0
+    Interval: 0
+    Speed: 0
   - PoolType: 22
     EnemyPrefab: {fileID: 6194636534989617940, guid: f336dfd6f4a1b4a4f85ee331d29c06c7, type: 3}
     EnemyCount: 1
+    Health: 0
+    Damage: 0
+    Interval: 0
+    Speed: 0
   - PoolType: 23
     EnemyPrefab: {fileID: 4414364848439637203, guid: 05c66507f6ceaee4c83287f1feacfdbe, type: 3}
     EnemyCount: 1
-  EnemySpawnDuration: 1
+    Health: 0
+    Damage: 0
+    Interval: 0
+    Speed: 0
+  ObjectTypeToEnemyData:
+    _pairs:
+    - _key: 21
+      _value:
+        PoolType: 21
+        EnemyPrefab: {fileID: 2516107288763263833, guid: b7fd8253eb0865b4eba4c504642588b3, type: 3}
+        EnemyCount: 3
+        Health: 3
+        Damage: 5
+        Interval: 1
+        Speed: 1
+    - _key: 22
+      _value:
+        PoolType: 22
+        EnemyPrefab: {fileID: 6194636534989617940, guid: f336dfd6f4a1b4a4f85ee331d29c06c7, type: 3}
+        EnemyCount: 1
+        Health: 10
+        Damage: 15
+        Interval: 1
+        Speed: 0.25
+    - _key: 23
+      _value:
+        PoolType: 23
+        EnemyPrefab: {fileID: 4414364848439637203, guid: 05c66507f6ceaee4c83287f1feacfdbe, type: 3}
+        EnemyCount: 1
+        Health: 5
+        Damage: 20
+        Interval: 1
+        Speed: 0.5
   _defenseData:
   - PoolType: 11
     DefenseItemPrefab: {fileID: 3131362303539176914, guid: 0a336ef887068934a909cdfa1072747d, type: 3}
     DirectionTypes: 00000000
     ItemCount: 3
+    Health: 0
     Damage: 3
-    Range: 4
     Interval: 3
+    Range: 4
   - PoolType: 12
     DefenseItemPrefab: {fileID: 2644909660460546783, guid: 5c52526c1b3524c448fdc82a23078c58, type: 3}
     DirectionTypes: 00000000
     ItemCount: 2
+    Health: 0
     Damage: 3
-    Range: 4
     Interval: 3
+    Range: 4
   - PoolType: 13
     DefenseItemPrefab: {fileID: 5907578868842343627, guid: 311d9162349f77a4694814575336f573, type: 3}
     DirectionTypes: 00000000010000000200000003000000
     ItemCount: 1
+    Health: 0
     Damage: 10
-    Range: 1
     Interval: 5
+    Range: 1
+  ObjectTypeToDefenseData:
+    _pairs:
+    - _key: 11
+      _value:
+        PoolType: 11
+        DefenseItemPrefab: {fileID: 3131362303539176914, guid: 0a336ef887068934a909cdfa1072747d, type: 3}
+        DirectionTypes: 00000000
+        ItemCount: 3
+        Health: 10
+        Damage: 3
+        Interval: 3
+        Range: 4
+    - _key: 12
+      _value:
+        PoolType: 12
+        DefenseItemPrefab: {fileID: 2644909660460546783, guid: 5c52526c1b3524c448fdc82a23078c58, type: 3}
+        DirectionTypes: 00000000
+        ItemCount: 2
+        Health: 15
+        Damage: 3
+        Interval: 3
+        Range: 4
+    - _key: 13
+      _value:
+        PoolType: 13
+        DefenseItemPrefab: {fileID: 5907578868842343627, guid: 311d9162349f77a4694814575336f573, type: 3}
+        DirectionTypes: 00000000010000000200000003000000
+        ItemCount: 1
+        Health: 20
+        Damage: 10
+        Interval: 5
+        Range: 1
+  ActivePieceColor: {r: 0.38729188, g: 1, b: 0.1462264, a: 1}
+  PassivePieceColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+  EnemySpawnDuration: 1

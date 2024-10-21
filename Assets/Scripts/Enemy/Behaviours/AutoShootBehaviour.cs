@@ -9,12 +9,12 @@ public class AutoShootBehaviour : MonoBehaviour
 
     [SerializeField] private Enemy _enemy;
 
-    private void Start()
+    private void OnEnable()
     {
         _cancellationTokenSource = new CancellationTokenSource();
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         _cancellationTokenSource.Cancel();
     }
