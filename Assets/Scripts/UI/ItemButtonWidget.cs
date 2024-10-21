@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -38,8 +37,9 @@ public class ItemButtonWidget : MonoBehaviour
         if (_counter <= 0)
         {
             DisableButton();
-            return;
         }
+        ButtonClickEvent buttonClickEvent = new ButtonClickEvent();
+        EventManager<ButtonClickEvent>.CustomAction(this, buttonClickEvent);
     }
 
     private void DisableButton()

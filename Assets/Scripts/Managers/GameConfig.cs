@@ -8,27 +8,22 @@ public class GameConfig : ScriptableObject
 {
     [Header("BOARD")]
     [SerializeField] private Vector2Int _boardSize;
-    public Vector2Int BoardSize => _boardSize;
-
-    [SerializeField] private float _pieceDistance;
-    public float PieceOffset => _pieceDistance;
-
     [SerializeField] private BoardPiece _boardPiece;
-    public BoardPiece BoardPiecePrefab => _boardPiece;
-
     [SerializeField] private int _defenceHeightThreshold;
-    public int DefenceHeightThreshold => _defenceHeightThreshold;
-
-    public Color ActivePieceColor;
-    public Color PassivePieceColor;
 
     [Header("ENEMY")]
     [SerializeField] private List<EnemyData> _enemyDatas;
-    public List<EnemyData> EnemyDatas => _enemyDatas;
-    public float EnemySpawnDuration;
 
     [Header("ITEM")]
     [SerializeField] private List<DefenseData> _defenseData;
+
+    public Vector2Int BoardSize => _boardSize;
+    public BoardPiece BoardPiecePrefab => _boardPiece;
+    public int DefenceHeightThreshold => _defenceHeightThreshold;
+    public Color ActivePieceColor;
+    public Color PassivePieceColor;
+    public float EnemySpawnDuration;
+    public List<EnemyData> EnemyDatas => _enemyDatas;
     public List<DefenseData> DefenseData => _defenseData;
 
 }
