@@ -19,4 +19,9 @@ public abstract class BaseResource : MonoBehaviour
     public virtual void OnSpawnCustomAction(Transform initTransform)
     {
     }
+
+    public virtual void SetPiece(BoardPiece piece)
+    {
+        CurrentBoardPiece = piece;
+    }
 }

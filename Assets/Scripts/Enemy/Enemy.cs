@@ -18,9 +18,10 @@ public class Enemy : BaseResource
     public int Interval;
     public float Speed;
 
+    #endregion
+
     public Action OnSpawnAction;
     public Action OnDestroyAction;
-    #endregion
 
     public override void OnSpawnCustomAction(Transform initTransform)
     {

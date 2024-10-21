@@ -55,6 +55,22 @@ public class BoardPiece : MonoBehaviour, IPointerClickHandler
         _neighbours = neighbours;
     }
 
+    public void SetPieceElement(BaseResource tileElement)
+    {
+        CurrentResource = tileElement;
+        CurrentResource.transform.parent = transform;
+        CurrentResource.SetPiece(this);
+
+        if(CurrentResource is DefenseItem defenceItem)
+        {
+            OnDefenceItemPlaced onDefenseItemPlaced = new OnDefenceItemPlaced();
+            onDefenseItemPlaced.DefenceItem = defenceItem;
+            EventManager<OnDefenceItemPlaced>.CustomAction(this, onDefenseItemPlaced);
+        }
+
+        //_currentSelectedDefenceItemType = GameElementType.None;
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("OnPointerClick");
