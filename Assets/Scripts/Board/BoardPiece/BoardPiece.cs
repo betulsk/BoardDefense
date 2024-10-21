@@ -5,12 +5,11 @@ using UnityEngine.EventSystems;
 
 public class BoardPiece : MonoBehaviour, IPointerClickHandler
 {
-    private EPieceType _pieceType = EPieceType.None;
+    private EPieceType _pieceType = EPieceType.Empty;
     private Vector2Int _gridPosition;
     private Dictionary<EPieceDirectionType, BoardPiece> _neighbours;
-
     private BaseResource _resource;
-    private bool _canPlaceResource;
+    private EPoolObjectType _clickedButtonType;
 
     [SerializeField] private PieceVisualController _visualController;
 
@@ -18,7 +17,7 @@ public class BoardPiece : MonoBehaviour, IPointerClickHandler
 
     public Dictionary<EPieceDirectionType, BoardPiece> Neighbours => _neighbours;
 
-    public BaseResource Resource
+    public BaseResource CurrentResource
     {
         get { return _resource; }
         set { _resource = value; }
@@ -31,6 +30,7 @@ public class BoardPiece : MonoBehaviour, IPointerClickHandler
     }
 
     public bool IsPlacablePiece;
+    public bool IsItemSelected;
 
     private void OnEnable()
     {
@@ -46,14 +46,8 @@ public class BoardPiece : MonoBehaviour, IPointerClickHandler
     {
         _gridPosition = new Vector2Int(rowX, columnY);
         transform.position = new Vector3(rowX, columnY, transform.position.z);
-        PieceType = EPieceType.Empty;
-        Resource = null;
+        CurrentResource = null;
         IsPlacablePiece = columnY <= config.DefenceHeightThreshold;
-    }
-
-    private void OnButtonClicked(object sender, ButtonClickEvent @event)
-    {
-        _visualController.TryChangePieceColor();
     }
 
     public void SetNeighbours(Dictionary<EPieceDirectionType, BoardPiece> neighbours)
@@ -70,9 +64,16 @@ public class BoardPiece : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    private void OnButtonClicked(object sender, ButtonClickEvent clickEvent)
+    {
+        IsItemSelected = true;
+        _clickedButtonType = clickEvent.PoolObjectType;
+        _visualController.TryChangePieceColor();
+    }
+
     private bool TryPlaceItem()
     {
-        if (Resource != null || !IsPlacablePiece || PieceType != EPieceType.Empty)
+        if(!IsItemSelected || CurrentResource != null || !IsPlacablePiece)
         {
             return false;
         }
@@ -82,5 +83,7 @@ public class BoardPiece : MonoBehaviour, IPointerClickHandler
     private void PlaceItem()
     {
         Debug.Log("Defence Item placed");
+        var resource = ResourcePoolManager.Instance.LoadResource(_clickedButtonType, transform);
+        CurrentResource = resource;
     }
 }

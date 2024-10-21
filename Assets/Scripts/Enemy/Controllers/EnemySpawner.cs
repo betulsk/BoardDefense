@@ -59,7 +59,7 @@ public class EnemySpawner : MonoBehaviour
             StopCoroutine(_spawnRoutine);
             return;
         }
-        ResourcePoolManager.Instance.LoadResource(_enemyDatas[0]);
+        ResourcePoolManager.Instance.LoadResource(_enemyDatas[0], transform);
         _enemyDatas.RemoveAt(0);
     }
 }

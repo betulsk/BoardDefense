@@ -48,8 +48,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _poolObjectType: 11
   _sourceText: {fileID: 7628213221604746824}
-  _currentBoardPiece: {fileID: 0}
   _healthController: {fileID: 3584934697196571693}
+  _defenseItemText: {fileID: 7628213221604746824}
+  DirectionTypes: 
+  DefenseType: 0
+  Range: 0
+  Health: 0
+  Damage: 0
+  Interval: 0
 --- !u!1 &2188375490444702995
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,8 +341,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4286611584
+  m_fontColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

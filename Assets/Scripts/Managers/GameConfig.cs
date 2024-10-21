@@ -26,6 +26,8 @@ public class GameConfig : ScriptableObject
     public List<EnemyData> EnemyDatas => _enemyDatas;
     public List<DefenseData> DefenseData => _defenseData;
 
+    public SerializableDictionary<EPoolObjectType, DefenseData> ObjectTypeToDefenseData;
+
 }
 
 [System.Serializable]

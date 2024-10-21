@@ -8,6 +8,7 @@ public class ItemButtonWidget : MonoBehaviour
     private int _counter;
 
     [SerializeField] private EDefenseItemType _defenseType;
+    [SerializeField] private EPoolObjectType _poolType;
     [SerializeField] private Button _button;
     [SerializeField] private Image _buttonImage;
     [SerializeField] private Color _disableColor;
@@ -23,10 +24,11 @@ public class ItemButtonWidget : MonoBehaviour
         _button.onClick.RemoveListener(OnButtonClicked);
     }
 
-    public void SetData(EDefenseItemType defenseType, int count)
+    public void SetData(DefenseData defenseData)
     {
-        _counter = count;
-        _defenseType = defenseType;
+        _counter = defenseData.ItemCount;
+        _defenseType = defenseData.DefenseItemPrefab.DefenseType;
+        _poolType = defenseData.PoolType;
         SetTotalCountText();
     }
 
@@ -39,6 +41,7 @@ public class ItemButtonWidget : MonoBehaviour
             DisableButton();
         }
         ButtonClickEvent buttonClickEvent = new ButtonClickEvent();
+        buttonClickEvent.PoolObjectType = _poolType;
         EventManager<ButtonClickEvent>.CustomAction(this, buttonClickEvent);
     }
 

@@ -18,6 +18,11 @@ public class GameConfigManager : Singleton<GameConfigManager>
 
     public List<DefenseData> GetDefenseItemData()
     {
-        return GetActiveConfigData().DefenseData;
+        var defenseDatas = new List<DefenseData>();
+        foreach(var item in GetActiveConfigData().ObjectTypeToDefenseData.Dictionary)
+        {
+            defenseDatas.Add(item.Value);
+        }
+        return defenseDatas;
     }
 }

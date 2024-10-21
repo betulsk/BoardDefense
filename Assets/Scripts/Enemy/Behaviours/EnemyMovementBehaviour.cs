@@ -21,7 +21,7 @@ public class EnemyMovementBehaviour : MonoBehaviour
             yield return null;
         }
 
-        if(downPiece != null && downPiece.PieceType == EPieceType.Empty)
+        if(downPiece != null && downPiece.CurrentResource == null)
         {
             Move(downPiece);
         }
@@ -42,9 +42,9 @@ public class EnemyMovementBehaviour : MonoBehaviour
 
     private void Move(BoardPiece piece)
     {
-        _enemy.CurrentBoardPiece.PieceType = EPieceType.None;
+        //_enemy.CurrentBoardPiece.PieceType = EPieceType.Empty;
+        _enemy.CurrentBoardPiece.CurrentResource = null;
         _enemy.transform.DOLocalMoveY(0, _enemy.MovementSpeed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(OnReachedToTargetTile);
-
     }
 
     private void OnReachedToTargetTile()

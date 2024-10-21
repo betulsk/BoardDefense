@@ -13,9 +13,9 @@ public class Enemy : BaseResource
     public float Health;
     #endregion
 
-    public override void OnSpawnCustomAction()
+    public override void OnSpawnCustomAction(Transform initTransform)
     {
-        base.OnSpawnCustomAction();
+        base.OnSpawnCustomAction(initTransform);
         int randomIndex = Random.Range(0, GameManager.Instance.EnemySpawnPositions.Count);
         transform.position = GameManager.Instance.EnemySpawnPositions[randomIndex].transform.position;
         CurrentBoardPiece = GameManager.Instance.EnemySpawnPositions[randomIndex];

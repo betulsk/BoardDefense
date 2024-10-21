@@ -33,7 +33,7 @@ public class ResourcePoolManager : Singleton<ResourcePoolManager>
         }
     }
 
-    public BaseResource LoadResource(EPoolObjectType poolObjectType)
+    public BaseResource LoadResource(EPoolObjectType poolObjectType, Transform initTransform)
     {
         if(!ResourceToGameObjectPool.ContainsKey(poolObjectType) || ResourceToGameObjectPool[poolObjectType].Count == 0)
             return null;
@@ -41,7 +41,7 @@ public class ResourcePoolManager : Singleton<ResourcePoolManager>
         var objectToSpawn = ResourceToGameObjectPool[poolObjectType].Dequeue();
 
         objectToSpawn.gameObject.SetActive(true);
-        objectToSpawn.OnSpawnCustomAction();
+        objectToSpawn.OnSpawnCustomAction(initTransform);
         return objectToSpawn;
     }
 }

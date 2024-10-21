@@ -7,12 +7,12 @@ public class PieceVisualController : MonoBehaviour
 
     public void TryChangePieceColor()
     {
-        if(_piece.Resource != null)
+        if(_piece.CurrentResource != null)
         {
             _spriteRenderer.color = GameConfigManager.Instance.GetActiveConfigData().PassivePieceColor;
             return;
         }
-        if(_piece.IsPlacablePiece && _piece.Resource == null)
+        if(_piece.IsPlacablePiece && _piece.CurrentResource == null)
         {
             _spriteRenderer.color = GameConfigManager.Instance.GetActiveConfigData().ActivePieceColor;
         }

@@ -16,7 +16,7 @@ public abstract class BaseResource : MonoBehaviour
         set { _currentBoardPiece = value; }
     }
 
-    public virtual void OnSpawnCustomAction()
+    public virtual void OnSpawnCustomAction(Transform initTransform)
     {
     }
 }

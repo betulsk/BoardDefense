@@ -73,6 +73,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2339945290797350669, guid: 41068ca02c96aca4e91e26ddecf37e53, type: 3}
+      propertyPath: _poolObjectType
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2339945290797350669, guid: 41068ca02c96aca4e91e26ddecf37e53, type: 3}
       propertyPath: DirectionTypes.Array.size
       value: 4
       objectReference: {fileID: 0}
