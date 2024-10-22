@@ -15,14 +15,11 @@ public class UIWidget : MonoBehaviour
     private void Start()
     {
         PhaseManager.Instance.OnPhaseChanged += OnPhaseChanged; 
-        //EventManager<OnLevelCompleted>.SubscribeToEvent(OnLevelFinished);
     }
 
     private void OnDestroy()
     {
         PhaseManager.Instance.OnPhaseChanged -= OnPhaseChanged;
-
-        //EventManager<OnLevelCompleted>.UnsubscribeToEvent(OnLevelFinished);
         GameManager.Instance.OnBoardCreated -= OnBoardCreated;
     }
 
@@ -42,17 +39,6 @@ public class UIWidget : MonoBehaviour
     private void OnBoardCreated()
     {
         int levelData = GameManager.Instance.CurrentLevelIndex + 1;
-        Debug.Log("UI LevelData: " + levelData + " CurrentLevelIndex: " + GameManager.Instance.CurrentLevelIndex);
         _levelText.text = "Level " + levelData;   
-    }
-
-    private void OnLevelFinished(object sender, OnLevelCompleted levelData)
-    {
-        if(levelData.IsWin)
-        {
-            _levelWinWidget.gameObject.SetActive(true);
-            return;
-        }
-        _levelFailWidget.gameObject.SetActive(true);
     }
 }

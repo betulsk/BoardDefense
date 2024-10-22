@@ -47,26 +47,6 @@ public class BoardPieceSpawner
         SetNeighbours();
     }
 
-    private void SetNeighbours()
-    {
-        Dictionary<EPieceDirectionType, BoardPiece> neighbours;
-        var directionCount = Enum.GetValues(typeof(EPieceDirectionType)).Length;
-
-        foreach(BoardPiece piece in _PiecePositionToPiece.Values)
-        {
-            neighbours = new Dictionary<EPieceDirectionType, BoardPiece>();
-
-            for(int i = 0; i < directionCount; i++)
-            {
-                var possibleNeighbourCoordinates = piece.GridPosition + _pieceDirectionTypeToCoordinates[(EPieceDirectionType)i];
-                if(_PiecePositionToPiece.TryGetValue(possibleNeighbourCoordinates, out var value))
-                    neighbours.Add((EPieceDirectionType)i, value);
-
-                piece.SetNeighbours(neighbours);
-            }
-        }
-    }
-
     public List<BoardPiece> GetAttackableTiles(BoardPiece piece, EPieceDirectionType directionType, int range)
     {
         var currentPiece = piece;
@@ -88,5 +68,25 @@ public class BoardPieceSpawner
         }
 
         return attackablePieces;
+    }
+
+    private void SetNeighbours()
+    {
+        Dictionary<EPieceDirectionType, BoardPiece> neighbours;
+        var directionCount = Enum.GetValues(typeof(EPieceDirectionType)).Length;
+
+        foreach(BoardPiece piece in _PiecePositionToPiece.Values)
+        {
+            neighbours = new Dictionary<EPieceDirectionType, BoardPiece>();
+
+            for(int i = 0; i < directionCount; i++)
+            {
+                var possibleNeighbourCoordinates = piece.GridPosition + _pieceDirectionTypeToCoordinates[(EPieceDirectionType)i];
+                if(_PiecePositionToPiece.TryGetValue(possibleNeighbourCoordinates, out var value))
+                    neighbours.Add((EPieceDirectionType)i, value);
+
+                piece.SetNeighbours(neighbours);
+            }
+        }
     }
 }

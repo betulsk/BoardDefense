@@ -31,7 +31,6 @@ public class GameManager : Singleton<GameManager>
     private void Init()
     {
         _currentLevelIndex = PlayerData.LevelData;
-        Debug.Log("CurrentLevelData: " + _currentLevelIndex);
         _boardPieceSpawner = new BoardPieceSpawner(GameConfigManager.Instance.GameConfigs[_currentLevelIndex]);
         _boardPieceSpawner.Spawn(_board.PiecesVisualTransform);
         OnBoardCreated?.Invoke();
@@ -42,11 +41,9 @@ public class GameManager : Singleton<GameManager>
         if(levelCompleteEvent.IsWin)
         {
             PlayerData.LevelData++;
-            Debug.Log("LevelDataArttýrýldý " + PlayerData.LevelData);
             if(PlayerData.LevelData > _maxLevel)
             {
                 PlayerData.LevelData = 0;
-                Debug.Log("LevelDataSýfýrlandý " + PlayerData.LevelData);
             }
         }
     }

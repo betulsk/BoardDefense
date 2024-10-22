@@ -8,13 +8,13 @@ public class DefenseItem : BaseResource, IHealthProvider
     private List<BoardPiece> _attackablePieces = new List<BoardPiece>();
     private Coroutine _waitRoutine;
 
-    [SerializeField] private DefenseItemVisualController _healthController;
     [SerializeField] private DefenseItemShootBehaviour _defenseItemShootBehaviour;
     [SerializeField] private TMP_Text _defenseItemText;
+
     [SerializeField] private int _maxHealth = 0;
     [SerializeField] private float _duration = 0.4f;
 
-    public DefenseItemVisualController HealthController => _healthController;
+    #region Getter/Setter
     public List<BoardPiece> AttackablePieces => _attackablePieces;
 
     public Action<int> OHealthUpdated { get; set; }
@@ -27,6 +27,7 @@ public class DefenseItem : BaseResource, IHealthProvider
     public int Range;
     public bool CanAttack;
     public bool IsDead;
+    #endregion
 
     public override void OnSpawnCustomAction(Transform initTransform)
     {
@@ -80,7 +81,6 @@ public class DefenseItem : BaseResource, IHealthProvider
 
     public void Die()
     {
-        Debug.Log("Die");
         IsDead = true;
         CurrentBoardPiece.CurrentResource = null;
         if(_waitRoutine != null)

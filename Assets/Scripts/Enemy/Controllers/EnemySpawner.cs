@@ -24,7 +24,6 @@ public class EnemySpawner : MonoBehaviour
             GameManager.Instance.OnBoardCreated -= OnBoardCreated;
         }
         EventManager<OnEnemyDied>.UnsubscribeToEvent(OnEnemyDie);
-
     }
 
     private void OnEnemyDie(object sender, OnEnemyDied dieEvent)

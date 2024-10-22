@@ -3,18 +3,15 @@ using UnityEngine;
 
 public class Enemy : BaseResource, IHealthProvider
 {
-    private Coroutine _coroutine;
-    [SerializeField] private EEnemyType _enemyType;
-    [SerializeField] private EnemyMovementBehaviour _enemyMovementBehaviour;
+    private Coroutine _waitRoutine;
 
+    [SerializeField] private EnemyMovementBehaviour _enemyMovementBehaviour;
     [SerializeField] private AutoShootBehaviour _autoShootBehaviour;
-    [SerializeField] private EnemyVisualController _visualController;
 
     [SerializeField] private int _maxHealth = 0;
     [SerializeField] private float _waitDuration = 0.4f;
 
     #region Getter/Setter
-    public EEnemyType EnemyType => _enemyType;
     public EnemyMovementBehaviour EnemyMovementBehaviour => _enemyMovementBehaviour;
     public AutoShootBehaviour AutoShootBehaviour => _autoShootBehaviour;
 
@@ -87,11 +84,11 @@ public class Enemy : BaseResource, IHealthProvider
     {
         IsDead = true;
         CurrentBoardPiece.CurrentResource = null;
-        if(_coroutine != null)
+        if(_waitRoutine != null)
         {
             return;
         }
-        _coroutine = StartCoroutine(this.WaitSecond(_waitDuration, () =>
+        _waitRoutine = StartCoroutine(this.WaitSecond(_waitDuration, () =>
         {
             ResourcePoolManager.Instance.ReturnPool(PoolObjectType, this);
             OnEnemyDied onEnemyDieEvent = new OnEnemyDied();

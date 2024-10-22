@@ -37,7 +37,6 @@ public class EnemyMovementBehaviour : MonoBehaviour
 
     private void Move(BoardPiece piece)
     {
-        //_enemy.CurrentBoardPiece.PieceType = EPieceType.Empty;
         _enemy.CurrentBoardPiece.CurrentResource = null;
         piece.SetPieceElement(_enemy);
         _enemy.transform.DOLocalMoveY(0, _enemy.Speed).SetSpeedBased().SetEase(Ease.Linear).OnComplete(OnReachedToTargetTile);

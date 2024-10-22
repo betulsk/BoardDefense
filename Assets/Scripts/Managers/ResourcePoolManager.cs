@@ -5,11 +5,9 @@ using UnityEngine;
 public class ResourcePoolManager : Singleton<ResourcePoolManager>
 {
     [SerializeField] private List<BaseResource> _poolObjects;
-    [SerializeField] private int _minCount = 0;
     [SerializeField] private int _maxCount = Int32.MaxValue;
 
     public Dictionary<EPoolObjectType, Queue<BaseResource>> ResourceToGameObjectPool = new Dictionary<EPoolObjectType, Queue<BaseResource>>();
-    public int MinCount => _minCount;
     public int MaxCount => _maxCount;
 
     private void Awake()
