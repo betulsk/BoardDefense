@@ -30,7 +30,12 @@ public class ItemButtonWidget : MonoBehaviour
     {
         _button.onClick.AddListener(OnButtonClicked);
         EventManager<OnDefenceItemPlaced>.SubscribeToEvent(OnItemPlaced);
+    }
 
+    private void OnDisable()
+    {
+        _button.onClick.RemoveListener(OnButtonClicked);
+        EventManager<OnDefenceItemPlaced>.UnsubscribeToEvent(OnItemPlaced);
     }
 
     private void OnItemPlaced(object sender, OnDefenceItemPlaced @event)
@@ -43,11 +48,6 @@ public class ItemButtonWidget : MonoBehaviour
         {
             EnableButton();
         }
-    }
-
-    private void OnDisable()
-    {
-        _button.onClick.RemoveListener(OnButtonClicked);
     }
 
     public void SetData(DefenseData defenseData)

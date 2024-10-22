@@ -17,8 +17,6 @@ public class ItemUIWidget : MonoBehaviour
         {
             GameManager.Instance.OnBoardCreated -= OnBoardCreated;
         }
-        EventManager<OnDefenceItemPlaced>.UnsubscribeToEvent(OnItemPlaced);
-
     }
 
     public void EnableAllButtons()
@@ -45,13 +43,7 @@ public class ItemUIWidget : MonoBehaviour
             ItemButtonWidget buttonWidget = Instantiate(_buttonPrefab, parent: transform);
             buttonWidget.SetData(itemData);
             buttonWidget.ItemUIWidget = this;
-            EventManager<OnDefenceItemPlaced>.SubscribeToEvent(OnItemPlaced);
             _buttons.Add(buttonWidget);
         }
-    }
-
-    private void OnItemPlaced(object sender, OnDefenceItemPlaced @event)
-    {
-        //EnableAllButtons();
     }
 }
