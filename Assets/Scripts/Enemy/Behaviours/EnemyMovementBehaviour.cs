@@ -19,7 +19,7 @@ public class EnemyMovementBehaviour : MonoBehaviour
         {
             Move(downPiece);
         }
-        else if(downPiece != null /*&& GameElementHelper.IsInCategory(downPiece.PieceType, Constants.CatogoryDefenseItem)*/)
+        else if(downPiece != null && CategoryHelper.IsInCategory(downPiece.CurrentResource.PoolObjectType, Consts.CatogoryDefenseItem))
         {
             var damagableElement = downPiece.CurrentResource as DefenseItem;
             if(damagableElement != null && !_enemy.IsDead)
@@ -47,7 +47,9 @@ public class EnemyMovementBehaviour : MonoBehaviour
         var isLevelFailed = _enemy.CurrentBoardPiece.GridPosition.y == 0;
         if(isLevelFailed)
         {
-            EventManager<OnLevelCompleted>.CustomAction(this, new OnLevelCompleted());
+            OnLevelCompleted levelCompleteEvent = new OnLevelCompleted();
+            levelCompleteEvent.IsFail = true;
+            EventManager<OnLevelCompleted>.CustomAction(this, levelCompleteEvent);
         }
         else
         {
