@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6045944072550991548, guid: c094a084d4529d84d8da5aae2865ed84, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6045944072550991548, guid: c094a084d4529d84d8da5aae2865ed84, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7874830624488070834, guid: c094a084d4529d84d8da5aae2865ed84, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -75,6 +83,10 @@ PrefabInstance:
     - target: {fileID: 8472657983769935661, guid: c094a084d4529d84d8da5aae2865ed84, type: 3}
       propertyPath: m_text
       value: Enemy1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8472657983769935661, guid: c094a084d4529d84d8da5aae2865ed84, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278190080
       objectReference: {fileID: 0}
     - target: {fileID: 8892747743491063090, guid: c094a084d4529d84d8da5aae2865ed84, type: 3}
       propertyPath: m_AnchoredPosition.y

@@ -78,6 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemy: {fileID: 8108606968866780155}
   _slider: {fileID: 6948941002383449840}
+  _duration: 0.4
 --- !u!1 &1279329524109089416
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,11 +203,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _poolObjectType: 0
   _sourceText: {fileID: 8472657983769935661}
-  _enemyType: 0
   _enemyMovementBehaviour: {fileID: 8731938023591829192}
   _autoShootBehaviour: {fileID: 2827895718490069355}
-  _visualController: {fileID: 6203883245614954540}
   _maxHealth: 0
+  _waitDuration: 0.4
   IsDead: 0
   Health: 0
   Damage: 0
@@ -675,7 +675,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

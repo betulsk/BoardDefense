@@ -49,10 +49,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _poolObjectType: 11
   _sourceText: {fileID: 7628213221604746824}
-  _healthController: {fileID: 3584934697196571693}
   _defenseItemShootBehaviour: {fileID: 3392265879478832335}
   _defenseItemText: {fileID: 7628213221604746824}
   _maxHealth: 0
+  _duration: 0.4
   DirectionTypes: 
   DefenseType: 0
   Health: 0
@@ -412,6 +412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _defenseItem: {fileID: 2339945290797350669}
   _slider: {fileID: 6305242455730861181}
+  _duration: 0.4
 --- !u!1 &6256893576911766949
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 432186720680221615, guid: 41068ca02c96aca4e91e26ddecf37e53, type: 3}
+      propertyPath: m_Color.b
+      value: 0.1462264
+      objectReference: {fileID: 0}
+    - target: {fileID: 432186720680221615, guid: 41068ca02c96aca4e91e26ddecf37e53, type: 3}
+      propertyPath: m_Color.g
+      value: 0.65757716
+      objectReference: {fileID: 0}
+    - target: {fileID: 432186720680221615, guid: 41068ca02c96aca4e91e26ddecf37e53, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1818443966073961679, guid: 41068ca02c96aca4e91e26ddecf37e53, type: 3}
       propertyPath: m_Name
       value: DefenseItem2 Variant
