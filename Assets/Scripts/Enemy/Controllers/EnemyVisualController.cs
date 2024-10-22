@@ -6,6 +6,7 @@ public class EnemyVisualController : MonoBehaviour
 {
     [SerializeField] private Enemy _enemy;
     [SerializeField] public Slider _slider;
+    [SerializeField] public float _duration = 0.4f;
 
     private void Awake()
     {
@@ -25,8 +26,6 @@ public class EnemyVisualController : MonoBehaviour
     private void UpdateHealthBar()
     {
         float fillAmount = (float)_enemy.GetCurHealth() / _enemy.GetMaxHealth();
-        Debug.Log("Slider value is : " + fillAmount);
-        DOTween.To(() => _slider.value, x => _slider.value = x, fillAmount, .4f);
-
+        DOTween.To(() => _slider.value, x => _slider.value = x, fillAmount, _duration);
     }
 }

@@ -1,4 +1,3 @@
-using DG.Tweening;
 using System;
 using UnityEngine;
 
@@ -12,6 +11,7 @@ public class Enemy : BaseResource, IHealthProvider
     [SerializeField] private EnemyVisualController _visualController;
 
     [SerializeField] private int _maxHealth = 0;
+    [SerializeField] private float _waitDuration = 0.4f;
 
     #region Getter/Setter
     public EEnemyType EnemyType => _enemyType;
@@ -77,8 +77,6 @@ public class Enemy : BaseResource, IHealthProvider
         Health -= damage;
         SetCurHealth(Health);
         OHealthUpdated?.Invoke(Health);
-
-
         if(Health <= 0)
         {
             Die();
@@ -93,13 +91,12 @@ public class Enemy : BaseResource, IHealthProvider
         {
             return;
         }
-        _coroutine = StartCoroutine(this.WaitSecond(0.4f, () =>
+        _coroutine = StartCoroutine(this.WaitSecond(_waitDuration, () =>
         {
             ResourcePoolManager.Instance.ReturnPool(PoolObjectType, this);
             OnEnemyDied onEnemyDieEvent = new OnEnemyDied();
             onEnemyDieEvent.Enemy = this;
             EventManager<OnEnemyDied>.CustomAction(this, onEnemyDieEvent);
-
         }));
     }
 }

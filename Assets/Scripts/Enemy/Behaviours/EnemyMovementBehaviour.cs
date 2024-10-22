@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyMovementBehaviour : MonoBehaviour
 {
+    private readonly int Delay = 1500;
     [SerializeField] private Enemy _enemy;
 
     public async Task TryMove()
@@ -29,7 +30,7 @@ public class EnemyMovementBehaviour : MonoBehaviour
         }
         else
         {
-            await Task.Delay(1500);
+            await Task.Delay(Delay);
             await TryMove();
         }
     }

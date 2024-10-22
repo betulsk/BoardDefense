@@ -7,15 +7,4 @@ public static class PlayerData
         get => PlayerPrefs.GetInt($"Level", 0);
         set => PlayerPrefs.SetInt($"Level", value);
     }
-
-    public static void SaveData(string dataStr, int data)
-    {
-        PlayerPrefs.SetInt(dataStr, data);
-        PlayerPrefs.Save();
-    }
-
-    public static void GetData(string dataStr, int data)
-    {
-
-    }
 }

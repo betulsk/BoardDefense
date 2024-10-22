@@ -6,6 +6,7 @@ public class DefenseItemVisualController : MonoBehaviour
 {
     [SerializeField] private DefenseItem _defenseItem;
     [SerializeField] public Slider _slider;
+    [SerializeField] public float _duration = 0.4f;
 
     private void Start()
     {
@@ -25,6 +26,6 @@ public class DefenseItemVisualController : MonoBehaviour
     public void UpdateHealthBar()
     {
         float fillAmount = (float)_defenseItem.GetCurHealth() / _defenseItem.GetMaxHealth();
-        DOTween.To(() => _slider.value, x => _slider.value = x, fillAmount, .4f);
+        DOTween.To(() => _slider.value, x => _slider.value = x, fillAmount, _duration);
     }
 }
