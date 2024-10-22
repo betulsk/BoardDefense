@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -38,18 +37,6 @@ public class ItemButtonWidget : MonoBehaviour
         EventManager<OnDefenceItemPlaced>.UnsubscribeToEvent(OnItemPlaced);
     }
 
-    private void OnItemPlaced(object sender, OnDefenceItemPlaced @event)
-    {
-        if(_counter <= 0)
-        {
-            DisableButton();
-        }
-        else
-        {
-            EnableButton();
-        }
-    }
-
     public void SetData(DefenseData defenseData)
     {
         _counter = defenseData.ItemCount;
@@ -68,6 +55,18 @@ public class ItemButtonWidget : MonoBehaviour
     {
         _button.enabled = false;
         _buttonImage.color = _disableColor;
+    }
+
+    private void OnItemPlaced(object sender, OnDefenceItemPlaced @event)
+    {
+        if(_counter <= 0)
+        {
+            DisableButton();
+        }
+        else
+        {
+            EnableButton();
+        }
     }
 
     private void OnButtonClicked()
