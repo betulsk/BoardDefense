@@ -49,7 +49,7 @@ public class EnemyMovementBehaviour : MonoBehaviour
         if(isLevelFailed)
         {
             OnLevelCompleted levelCompleteEvent = new OnLevelCompleted();
-            levelCompleteEvent.IsFail = true;
+            levelCompleteEvent.IsWin = false;
             EventManager<OnLevelCompleted>.CustomAction(this, levelCompleteEvent);
         }
         else

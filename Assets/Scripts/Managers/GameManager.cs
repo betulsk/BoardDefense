@@ -5,7 +5,7 @@ using UnityEngine;
 [DefaultExecutionOrder(-10)]
 public class GameManager : Singleton<GameManager>
 {
-    private int _currentLevelIndex; 
+    private int _currentLevelIndex;
     private BoardPieceSpawner _boardPieceSpawner;
 
     [SerializeField] private Board _board;
@@ -32,10 +32,9 @@ public class GameManager : Singleton<GameManager>
 
     private void OnLevelComplete(object sender, OnLevelCompleted levelCompleteEvent)
     {
-        if(levelCompleteEvent.IsFail)
+        if(levelCompleteEvent.IsWin)
         {
-            return;
+            PlayerData.LevelData++;
         }
-        PlayerData.LevelData++;
     }
 }

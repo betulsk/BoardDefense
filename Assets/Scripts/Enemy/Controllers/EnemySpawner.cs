@@ -36,7 +36,9 @@ public class EnemySpawner : MonoBehaviour
 
         if(_enemyDatas.Count == 0 && _spawnedEnemies.Count == 0)
         {
-            EventManager<OnLevelCompleted>.CustomAction(this, new OnLevelCompleted());
+            OnLevelCompleted levelCompletedEvent = new OnLevelCompleted();
+            levelCompletedEvent.IsWin = true;
+            EventManager<OnLevelCompleted>.CustomAction(this, levelCompletedEvent);
         }
     }
 

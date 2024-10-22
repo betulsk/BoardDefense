@@ -10,7 +10,7 @@ public struct OnDefenceItemPlaced
 
 public struct OnLevelCompleted
 {
-    public bool IsFail;
+    public bool IsWin;
 }
 
 public struct OnEnemyDied
