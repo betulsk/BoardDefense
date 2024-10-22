@@ -26,12 +26,12 @@ public class DefenseItemShootBehaviour : MonoBehaviour
             if(_defenseItem.IsDead || _cancellationTokenSource.IsCancellationRequested)
                 return;
 
-            //var currentState = GameManager.Instance.StateManager.CurrentState;
-            //if(currentState is not GameplayState)
-            //{
-            //    _canAttack = false;
-            //    return;
-            //}
+            var currentState = PhaseManager.Instance.CurrentPhaseType;
+            if(currentState is not EPhase.GamePhase)
+            {
+                _defenseItem.CanAttack = false;
+                return;
+            }
 
             await Task.Delay((int)_defenseItem.Interval * _milliSeconds);
             if(_defenseItem.IsDead)

@@ -85,5 +85,8 @@ public class Enemy : BaseResource, IHealthProvider
         IsDead = true;
         CurrentBoardPiece.CurrentResource = null;
         ResourcePoolManager.Instance.ReturnPool(PoolObjectType, this);
+        OnEnemyDied onEnemyDieEvent = new OnEnemyDied();
+        onEnemyDieEvent.Enemy = this;
+        EventManager<OnEnemyDied>.CustomAction(this, onEnemyDieEvent);
     }
 }

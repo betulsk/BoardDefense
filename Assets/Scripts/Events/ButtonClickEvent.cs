@@ -12,3 +12,8 @@ public struct OnLevelCompleted
 {
 
 }
+
+public struct OnEnemyDied
+{
+    public Enemy Enemy;
+}

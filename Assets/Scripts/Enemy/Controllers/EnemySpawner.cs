@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     private List<EPoolObjectType> _enemyDatas;
+    private List<Enemy> _spawnedEnemies;
     private Coroutine _spawnRoutine;
 
     [SerializeField] private float _spawnDuration;
@@ -13,6 +14,7 @@ public class EnemySpawner : MonoBehaviour
     {
         SetEnemies();
         GameManager.Instance.OnBoardCreated += OnBoardCreated;
+        EventManager<OnEnemyDied>.SubscribeToEvent(OnEnemyDie);
     }
 
     private void OnDestroy()
@@ -21,11 +23,28 @@ public class EnemySpawner : MonoBehaviour
         {
             GameManager.Instance.OnBoardCreated -= OnBoardCreated;
         }
+        EventManager<OnEnemyDied>.UnsubscribeToEvent(OnEnemyDie);
+
+    }
+
+    private void OnEnemyDie(object sender, OnEnemyDied dieEvent)
+    {
+        if(_spawnedEnemies.Contains(dieEvent.Enemy))
+        {
+            _spawnedEnemies.Remove(dieEvent.Enemy);
+        }
+
+        if(_enemyDatas.Count == 0 && _spawnedEnemies.Count == 0)
+        {
+            EventManager<OnLevelCompleted>.CustomAction(this, new OnLevelCompleted());
+        }
     }
 
     private void SetEnemies()
     {
         _enemyDatas = new List<EPoolObjectType>();
+        _spawnedEnemies = new List<Enemy>();
+
         foreach(var enemyData in GameConfigManager.Instance.GetEnemyDatas())
         {
             for(int i = 0; i < enemyData.EnemyCount; i++)
@@ -37,6 +56,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnBoardCreated()
     {
+        _enemyDatas.Shuffle();
         Spawn();
         _spawnRoutine = StartCoroutine(SpawnRoutine());
     }
@@ -58,7 +78,8 @@ public class EnemySpawner : MonoBehaviour
             StopCoroutine(_spawnRoutine);
             return;
         }
-        ResourcePoolManager.Instance.LoadResource(_enemyDatas[0], transform);
+        var resource = ResourcePoolManager.Instance.LoadResource(_enemyDatas[0], transform) as Enemy;
+        _spawnedEnemies.Add(resource);
         _enemyDatas.RemoveAt(0);
     }
 }
