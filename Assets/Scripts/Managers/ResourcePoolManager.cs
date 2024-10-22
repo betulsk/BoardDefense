@@ -44,4 +44,13 @@ public class ResourcePoolManager : Singleton<ResourcePoolManager>
         objectToSpawn.OnSpawnCustomAction(initTransform);
         return objectToSpawn;
     }
+
+    public void ReturnPool(EPoolObjectType poolObjectType, BaseResource resource)
+    {
+        if(!ResourceToGameObjectPool.ContainsKey(poolObjectType))
+            return;
+
+        resource.gameObject.SetActive(false);
+        ResourceToGameObjectPool[poolObjectType].Enqueue(resource);
+    }
 }

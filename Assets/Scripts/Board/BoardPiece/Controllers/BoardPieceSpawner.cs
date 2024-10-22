@@ -66,4 +66,27 @@ public class BoardPieceSpawner
             }
         }
     }
+
+    public List<BoardPiece> GetAttackableTiles(BoardPiece piece, EPieceDirectionType directionType, int range)
+    {
+        var currentPiece = piece;
+        var attackablePieces = new List<BoardPiece>();
+        var currentFoundPieceAmount = 0;
+        while(currentFoundPieceAmount < range)
+        {
+            var pieceExist = currentPiece.Neighbours.TryGetValue(directionType, out var targetPiece);
+            if(pieceExist)
+            {
+                attackablePieces.Add(targetPiece);
+                currentFoundPieceAmount++;
+                currentPiece = targetPiece;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        return attackablePieces;
+    }
 }

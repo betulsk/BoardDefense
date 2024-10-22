@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class DefenseItem : BaseResource, IHealthProvider
 {
+    private List<BoardPiece> _attackablePieces = new List<BoardPiece>();
+
     [SerializeField] private DefenseItemHealthController _healthController;
+    [SerializeField] private DefenseItemShootBehaviour _defenseItemShootBehaviour;
     [SerializeField] private TMP_Text _defenseItemText;
+    [SerializeField] private int _maxHealth = 0;
 
     public DefenseItemHealthController HealthController => _healthController;
+    public List<BoardPiece> AttackablePieces => _attackablePieces;
 
-    public Action<float> OnUpdated { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public Action<int> OHealthUpdated { get; set; }
 
     public List<EPieceDirectionType> DirectionTypes;
     public EDefenseItemType DefenseType;
@@ -18,6 +23,8 @@ public class DefenseItem : BaseResource, IHealthProvider
     public int Damage;
     public int Interval;
     public int Range;
+    public bool CanAttack;
+    public bool IsDead;
 
     public override void OnSpawnCustomAction(Transform initTransform)
     {
@@ -33,16 +40,19 @@ public class DefenseItem : BaseResource, IHealthProvider
         Health = data.Health;
         Damage = data.Damage;
         Interval = data.Interval;
+        CanAttack = true;
+        _maxHealth = Health;
+        IsDead = false;
     }
 
     public int GetMaxHealth()
     {
-        throw new NotImplementedException();
+        return _maxHealth;
     }
 
     public int GetCurHealth()
     {
-        throw new NotImplementedException();
+        return Health;
     }
 
     public int SetCurHealth(int health)
@@ -52,18 +62,42 @@ public class DefenseItem : BaseResource, IHealthProvider
             return Health;
         }
         Health = health;
-        OnUpdated?.Invoke(Health);
+        OHealthUpdated?.Invoke(Health);
         return Health;
     }
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("TakeDamage");
+        Health -= damage;
+        SetCurHealth(Health);
+        if(Health <= 0)
+        {
+            Die();
+        }
     }
 
     public void Die()
     {
         Debug.Log("Die");
+        IsDead = true;
+        CurrentBoardPiece.CurrentResource = null;
+        ResourcePoolManager.Instance.ReturnPool(PoolObjectType, this);
+    }
 
+    public override void SetPiece(BoardPiece piece)
+    {
+        base.SetPiece(piece);
+        _attackablePieces.Clear();
+        var boardPieceSpawner = GameManager.Instance.BoardPieceSpawner;
+        for(int i = 0; i < DirectionTypes.Count; i++)
+        {
+            var direction = DirectionTypes[i];
+            var foundAttackableTiles = boardPieceSpawner.GetAttackableTiles(CurrentBoardPiece, direction, Range);
+            if(foundAttackableTiles != null)
+            {
+                _attackablePieces.AddRange(foundAttackableTiles);
+            }
+        }
+        _defenseItemShootBehaviour.TryAttack();
     }
 }

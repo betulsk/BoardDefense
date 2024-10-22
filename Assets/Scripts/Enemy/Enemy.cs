@@ -1,11 +1,15 @@
 using System;
 using UnityEngine;
 
-public class Enemy : BaseResource
+public class Enemy : BaseResource, IHealthProvider
 {
     [SerializeField] private EEnemyType _enemyType;
     [SerializeField] private EnemyMovementBehaviour _enemyMovementBehaviour;
+
     [SerializeField] private AutoShootBehaviour _autoShootBehaviour;
+    [SerializeField] private EnemyVisualController _visualController;
+
+    [SerializeField] private int _maxHealth = 0;
 
     #region Getter/Setter
     public EEnemyType EnemyType => _enemyType;
@@ -20,6 +24,7 @@ public class Enemy : BaseResource
 
     #endregion
 
+    public Action<int> OHealthUpdated { get; set; }
     public Action OnSpawnAction;
     public Action OnDestroyAction;
 
@@ -30,6 +35,7 @@ public class Enemy : BaseResource
         transform.position = GameManager.Instance.EnemySpawnPositions[randomIndex].transform.position;
         CurrentBoardPiece = GameManager.Instance.EnemySpawnPositions[randomIndex];
         SetDatas();
+        CurrentBoardPiece.SetPieceElement(this);
         _enemyMovementBehaviour.TryMove();
         OnSpawnAction?.Invoke();
     }
@@ -41,5 +47,43 @@ public class Enemy : BaseResource
         Damage = data.Damage;
         Interval = data.Interval;
         Speed = data.Speed;
+    }
+
+    public int GetMaxHealth()
+    {
+        return _maxHealth;
+    }
+
+    public int GetCurHealth()
+    {
+        return Health;
+    }
+
+    public int SetCurHealth(int health)
+    {
+        if(Health == health)
+        {
+            return Health;
+        }
+        Health = health;
+        OHealthUpdated?.Invoke(Health);
+        return Health;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+        SetCurHealth(Health);
+        if(Health <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        IsDead = true;
+        CurrentBoardPiece.CurrentResource = null;
+        ResourcePoolManager.Instance.ReturnPool(PoolObjectType, this);
     }
 }

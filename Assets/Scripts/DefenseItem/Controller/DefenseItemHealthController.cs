@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DefenseItemHealthController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private DefenseItem _defenseItem;
+
+    private void Start()
     {
-        
+        _defenseItem.OHealthUpdated += OnHealthUpdated;    
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+        _defenseItem.OHealthUpdated -= OnHealthUpdated;
+    }
+
+    private void OnHealthUpdated(int health)
+    {
+        UpdateHealthBar();
+    }
+
+    public void UpdateHealthBar()
+    {
+
     }
 }

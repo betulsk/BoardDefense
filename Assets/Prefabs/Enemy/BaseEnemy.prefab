@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2d56581568c1d45a4ebfeffa73bf53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemy: {fileID: 8108606968866780155}
 --- !u!1 &1049309698408555172
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,11 +174,13 @@ MonoBehaviour:
   _enemyType: 0
   _enemyMovementBehaviour: {fileID: 8731938023591829192}
   _autoShootBehaviour: {fileID: 2827895718490069355}
+  _visualController: {fileID: 6203883245614954540}
+  _maxHealth: 0
   IsDead: 0
-  Interval: 0
-  Damage: 0
-  MovementSpeed: 0
   Health: 0
+  Damage: 0
+  Interval: 0
+  Speed: 0
 --- !u!1 &1653438172972671085
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +374,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemy: {fileID: 8108606968866780155}
-  _shootInterval: 2
 --- !u!1 &3571257991966346986
 GameObject:
   m_ObjectHideFlags: 0

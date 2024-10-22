@@ -101,5 +101,6 @@ public class BoardPiece : MonoBehaviour, IPointerClickHandler
         Debug.Log("Defence Item placed");
         var resource = ResourcePoolManager.Instance.LoadResource(_clickedButtonType, transform);
         CurrentResource = resource;
+        SetPieceElement(resource);
     }
 }

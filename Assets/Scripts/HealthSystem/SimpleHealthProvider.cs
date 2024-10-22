@@ -7,7 +7,7 @@ public class SimpleHealthProvider : MonoBehaviour, IHealthProvider
 
     [SerializeField] private int _maxHealth = 0;
 
-    public Action<float> OnUpdated { get; set; }
+    public Action<int> OHealthUpdated { get; set; }
     public Action OnDie;
 
     public int GetCurHealth()
@@ -27,7 +27,7 @@ public class SimpleHealthProvider : MonoBehaviour, IHealthProvider
             return _curHealth;
         }
         _curHealth = health;
-        OnUpdated?.Invoke(_curHealth);
+        OHealthUpdated?.Invoke(_curHealth);
         return _curHealth;
     }
 
