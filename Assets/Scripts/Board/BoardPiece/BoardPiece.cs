@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class BoardPiece : MonoBehaviour, IPointerClickHandler
 {
-    private EPieceType _pieceType = EPieceType.Empty;
+    private EPoolObjectType _poolType;
     private Vector2Int _gridPosition;
     private Dictionary<EPieceDirectionType, BoardPiece> _neighbours;
     private BaseResource _resource;
@@ -23,10 +23,10 @@ public class BoardPiece : MonoBehaviour, IPointerClickHandler
         set { _resource = value; }
     }
 
-    public EPieceType PieceType
+    public EPoolObjectType PoolType
     {
-        get { return _pieceType; }
-        set { _pieceType = value; }
+        get { return _poolType; }
+        set { _poolType = value; }
     }
 
     public bool IsPlacablePiece;
@@ -35,11 +35,13 @@ public class BoardPiece : MonoBehaviour, IPointerClickHandler
     private void OnEnable()
     {
         EventManager<ButtonClickEvent>.SubscribeToEvent(OnButtonClicked);
+        EventManager<OnDefenceItemPlaced>.SubscribeToEvent(OnDefenceItemPlace);
     }
 
     private void OnDisable()
     {
         EventManager<ButtonClickEvent>.UnsubscribeToEvent(OnButtonClicked);
+        EventManager<OnDefenceItemPlaced>.UnsubscribeToEvent(OnDefenceItemPlace);
     }
 
     public void SetPieceDatas(int rowX, int columnY, GameConfig config)
@@ -68,12 +70,11 @@ public class BoardPiece : MonoBehaviour, IPointerClickHandler
             EventManager<OnDefenceItemPlaced>.CustomAction(this, onDefenseItemPlaced);
         }
 
-        //_currentSelectedDefenceItemType = GameElementType.None;
+        PoolType = EPoolObjectType.None;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("OnPointerClick");
         if(TryPlaceItem())
         {
             PlaceItem();
@@ -82,14 +83,17 @@ public class BoardPiece : MonoBehaviour, IPointerClickHandler
 
     private void OnButtonClicked(object sender, ButtonClickEvent clickEvent)
     {
+        if(CurrentResource != null || !IsPlacablePiece)
+            return;
         IsItemSelected = true;
         _clickedButtonType = clickEvent.PoolObjectType;
+        PoolType = clickEvent.PoolObjectType;
         _visualController.TryChangePieceColor();
     }
 
     private bool TryPlaceItem()
     {
-        if(!IsItemSelected || CurrentResource != null || !IsPlacablePiece)
+        if(CurrentResource != null || !IsPlacablePiece || PoolType == EPoolObjectType.None)
         {
             return false;
         }
@@ -99,8 +103,14 @@ public class BoardPiece : MonoBehaviour, IPointerClickHandler
     private void PlaceItem()
     {
         Debug.Log("Defence Item placed");
+        IsItemSelected = false;
         var resource = ResourcePoolManager.Instance.LoadResource(_clickedButtonType, transform);
         CurrentResource = resource;
         SetPieceElement(resource);
+    }
+
+    private void OnDefenceItemPlace(object sender, OnDefenceItemPlaced @event)
+    {
+        PoolType = EPoolObjectType.None;
     }
 }
