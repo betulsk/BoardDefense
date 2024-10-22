@@ -269,7 +269,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defenseType: 0
+  _poolType: 0
   _button: {fileID: 7278316980576851915}
   _buttonImage: {fileID: 7918099562526955156}
   _disableColor: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 0.6313726}
+  _enableColor: {r: 1, g: 1, b: 1, a: 1}
   _itemCount: {fileID: 2587044958711866730}

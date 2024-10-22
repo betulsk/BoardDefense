@@ -19,6 +19,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         Init();
+        EventManager<OnLevelCompleted>.SubscribeToEvent(OnLevelComplete);
     }
 
     private void Init()
@@ -27,5 +28,14 @@ public class GameManager : Singleton<GameManager>
         _boardPieceSpawner = new BoardPieceSpawner(GameConfigManager.Instance.GameConfigs[_currentLevelIndex]);
         _boardPieceSpawner.Spawn(_board.PiecesVisualTransform);
         OnBoardCreated?.Invoke();
+    }
+
+    private void OnLevelComplete(object sender, OnLevelCompleted levelCompleteEvent)
+    {
+        if(levelCompleteEvent.IsFail)
+        {
+            return;
+        }
+        PlayerData.LevelData++;
     }
 }
