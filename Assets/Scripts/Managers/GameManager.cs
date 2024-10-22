@@ -9,11 +9,12 @@ public class GameManager : Singleton<GameManager>
     private BoardPieceSpawner _boardPieceSpawner;
 
     [SerializeField] private Board _board;
+    [SerializeField] private int _maxLevel;
 
     public BoardPieceSpawner BoardPieceSpawner => _boardPieceSpawner;
     public List<BoardPiece> EnemySpawnPositions;
     public int CurrentLevelIndex => _currentLevelIndex;
-
+    public bool IsWin;
     public Action OnBoardCreated;
 
     private void Start()
@@ -22,9 +23,15 @@ public class GameManager : Singleton<GameManager>
         EventManager<OnLevelCompleted>.SubscribeToEvent(OnLevelComplete);
     }
 
+    private void OnDestroy()
+    {
+        EventManager<OnLevelCompleted>.UnsubscribeToEvent(OnLevelComplete);
+    }
+
     private void Init()
     {
         _currentLevelIndex = PlayerData.LevelData;
+        Debug.Log("CurrentLevelData: " + _currentLevelIndex);
         _boardPieceSpawner = new BoardPieceSpawner(GameConfigManager.Instance.GameConfigs[_currentLevelIndex]);
         _boardPieceSpawner.Spawn(_board.PiecesVisualTransform);
         OnBoardCreated?.Invoke();
@@ -35,6 +42,12 @@ public class GameManager : Singleton<GameManager>
         if(levelCompleteEvent.IsWin)
         {
             PlayerData.LevelData++;
+            Debug.Log("LevelDataArttýrýldý " + PlayerData.LevelData);
+            if(PlayerData.LevelData > _maxLevel)
+            {
+                PlayerData.LevelData = 0;
+                Debug.Log("LevelDataSýfýrlandý " + PlayerData.LevelData);
+            }
         }
     }
 }

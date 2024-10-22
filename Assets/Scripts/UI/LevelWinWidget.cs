@@ -18,6 +18,7 @@ public class LevelWinWidget : MonoBehaviour
 
     private void OnButtonClicked()
     {
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

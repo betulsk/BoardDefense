@@ -300,6 +300,10 @@ PrefabInstance:
       propertyPath: _board
       value: 
       objectReference: {fileID: 1684848240}
+    - target: {fileID: 3322203539667073395, guid: 98911f90bb3a38b4681c99dae10eb63e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8456787116064269302, guid: 98911f90bb3a38b4681c99dae10eb63e, type: 3}
       propertyPath: m_Name
       value: LevelBase

@@ -7,6 +7,7 @@ public class PhaseManager : Singleton<PhaseManager>
     public bool IsGamePhaseStarted;
 
     public bool IsGamePhaseFinished;
+    public bool IsWin;
 
     public EPhase CurrentPhaseType;
     public Action<EPhase> OnPhaseChanged;
@@ -22,8 +23,9 @@ public class PhaseManager : Singleton<PhaseManager>
         EventManager<OnLevelCompleted>.UnsubscribeToEvent(OnLevelComplete);
     }
 
-    private void OnLevelComplete(object sender, OnLevelCompleted @event)
+    private void OnLevelComplete(object sender, OnLevelCompleted levelEvent)
     {
+        IsWin = levelEvent.IsWin;
         ChangePhase(EPhase.EndGamePhase);
     }
 

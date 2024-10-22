@@ -93,7 +93,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _board: {fileID: 0}
+  _maxLevel: 2
   EnemySpawnPositions: []
+  IsWin: 0
 --- !u!1 &5815968806337244236
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,6 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsGamePhaseStarted: 0
   IsGamePhaseFinished: 0
+  IsWin: 0
   CurrentPhaseType: 1
 --- !u!1 &6215153732159298291
 GameObject:
