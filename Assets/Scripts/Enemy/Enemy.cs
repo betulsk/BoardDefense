@@ -1,8 +1,10 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 
 public class Enemy : BaseResource, IHealthProvider
 {
+    private Coroutine _coroutine;
     [SerializeField] private EEnemyType _enemyType;
     [SerializeField] private EnemyMovementBehaviour _enemyMovementBehaviour;
 
@@ -43,6 +45,7 @@ public class Enemy : BaseResource, IHealthProvider
     private void SetDatas()
     {
         var data = GameConfigManager.Instance.GetEnemyItemData(PoolObjectType);
+        _maxHealth = data.Health;
         Health = data.Health;
         Damage = data.Damage;
         Interval = data.Interval;
@@ -66,7 +69,6 @@ public class Enemy : BaseResource, IHealthProvider
             return Health;
         }
         Health = health;
-        OHealthUpdated?.Invoke(Health);
         return Health;
     }
 
@@ -74,6 +76,9 @@ public class Enemy : BaseResource, IHealthProvider
     {
         Health -= damage;
         SetCurHealth(Health);
+        OHealthUpdated?.Invoke(Health);
+
+
         if(Health <= 0)
         {
             Die();
@@ -84,9 +89,17 @@ public class Enemy : BaseResource, IHealthProvider
     {
         IsDead = true;
         CurrentBoardPiece.CurrentResource = null;
-        ResourcePoolManager.Instance.ReturnPool(PoolObjectType, this);
-        OnEnemyDied onEnemyDieEvent = new OnEnemyDied();
-        onEnemyDieEvent.Enemy = this;
-        EventManager<OnEnemyDied>.CustomAction(this, onEnemyDieEvent);
+        if(_coroutine != null)
+        {
+            return;
+        }
+        _coroutine = StartCoroutine(this.WaitSecond(0.4f, () =>
+        {
+            ResourcePoolManager.Instance.ReturnPool(PoolObjectType, this);
+            OnEnemyDied onEnemyDieEvent = new OnEnemyDied();
+            onEnemyDieEvent.Enemy = this;
+            EventManager<OnEnemyDied>.CustomAction(this, onEnemyDieEvent);
+
+        }));
     }
 }

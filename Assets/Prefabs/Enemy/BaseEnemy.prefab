@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemy: {fileID: 8108606968866780155}
+  _slider: {fileID: 8801953556346770677}
 --- !u!1 &1049309698408555172
 GameObject:
   m_ObjectHideFlags: 0
