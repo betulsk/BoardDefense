@@ -6,13 +6,15 @@ using UnityEngine;
 public class DefenseItem : BaseResource, IHealthProvider
 {
     private List<BoardPiece> _attackablePieces = new List<BoardPiece>();
+    private Coroutine _waitRoutine;
 
-    [SerializeField] private DefenseItemHealthController _healthController;
+    [SerializeField] private DefenseItemVisualController _healthController;
     [SerializeField] private DefenseItemShootBehaviour _defenseItemShootBehaviour;
     [SerializeField] private TMP_Text _defenseItemText;
     [SerializeField] private int _maxHealth = 0;
+    [SerializeField] private float _duration = 0.4f;
 
-    public DefenseItemHealthController HealthController => _healthController;
+    public DefenseItemVisualController HealthController => _healthController;
     public List<BoardPiece> AttackablePieces => _attackablePieces;
 
     public Action<int> OHealthUpdated { get; set; }
@@ -62,7 +64,6 @@ public class DefenseItem : BaseResource, IHealthProvider
             return Health;
         }
         Health = health;
-        OHealthUpdated?.Invoke(Health);
         return Health;
     }
 
@@ -70,6 +71,7 @@ public class DefenseItem : BaseResource, IHealthProvider
     {
         Health -= damage;
         SetCurHealth(Health);
+        OHealthUpdated?.Invoke(Health);
         if(Health <= 0)
         {
             Die();
@@ -81,7 +83,14 @@ public class DefenseItem : BaseResource, IHealthProvider
         Debug.Log("Die");
         IsDead = true;
         CurrentBoardPiece.CurrentResource = null;
-        ResourcePoolManager.Instance.ReturnPool(PoolObjectType, this);
+        if(_waitRoutine != null)
+        {
+            return;
+        }
+        _waitRoutine = StartCoroutine(this.WaitSecond(_duration, ()=>
+        {
+            ResourcePoolManager.Instance.ReturnPool(PoolObjectType, this);
+        }));
     }
 
     public override void SetPiece(BoardPiece piece)

@@ -1,8 +1,11 @@
 using UnityEngine;
+using DG.Tweening;
+using UnityEngine.UI;
 
-public class DefenseItemHealthController : MonoBehaviour
+public class DefenseItemVisualController : MonoBehaviour
 {
     [SerializeField] private DefenseItem _defenseItem;
+    [SerializeField] public Slider _slider;
 
     private void Start()
     {
@@ -21,6 +24,7 @@ public class DefenseItemHealthController : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-
+        float fillAmount = (float)_defenseItem.GetCurHealth() / _defenseItem.GetMaxHealth();
+        DOTween.To(() => _slider.value, x => _slider.value = x, fillAmount, .4f);
     }
 }
